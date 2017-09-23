@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="w3-container" align="center">
+	<div class="w3-padding w3-xlarge w3-text-green">
+		<a href="{{ url_for('movie_all') }}"  class="fa fa-home" style="text-decoration:none;">Back to Home</a>
+		<br/>
+		<h3 >Edit Movie Details</h3>
+		<hr/>
+	</div>
+	{%- for category, message in get_flashed_messages(with_categories=true) %}
+	<div class="alert alert-danger">
+	{{ message }}
+	</div>
+	{%- endfor %}
+	{% for movie in data %}
+	<form action="{{ request.path }}" method="post">
+		<label for="name" >Movie NAME</label><br>
+		<input type="text" name="name" placeholder="Name" value="{{movie.name}}"><br>
+		<label for="time" >Time</label><br>
+		<input type="text" name="time" placeholder="time" value="{{movie.time}}"><br>
+		<label for="location" >Location</label><br>
+		<input name="location" type="text" placeholder="location" value="{{movie.location}}"><br>
+		
+		<input type="submit" value="Update">
+	</form>
+ {% endfor %}
+</div>
+</body>
+</html>
